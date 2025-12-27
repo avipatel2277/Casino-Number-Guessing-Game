@@ -19,7 +19,7 @@ public:
 
     void updateBalance(int amount) {
         balance += amount;
-        if (balance < 0) balance = 0; // prevent negative balance
+        if (balance < 0) balance = 0;
     }
 
     void displayStatus() const {
@@ -82,10 +82,9 @@ public:
     }
 };
 
-// Load leaderboard from file
 void loadLeaderboard(vector<Player>& leaderboard) {
     ifstream file("leaderboard.txt");
-    if (!file) return; // no file yet
+    if (!file) return; 
 
     string name;
     int balance;
@@ -95,7 +94,6 @@ void loadLeaderboard(vector<Player>& leaderboard) {
     file.close();
 }
 
-// Save leaderboard back to the same file
 void saveLeaderboard(vector<Player>& leaderboard) {
     sort(leaderboard.begin(), leaderboard.end(), [](const Player& a, const Player& b) {
         return a.getBalance() > b.getBalance();
@@ -116,7 +114,6 @@ void saveLeaderboard(vector<Player>& leaderboard) {
     cout << endl << "Leaderboard updated in leaderboard.txt" << endl << endl;
 }
 
-// Display leaderboard nicely
 void showLeaderboard(vector<Player>& leaderboard) {
     cout << endl;
     cout << "==============================================" << endl;
@@ -139,7 +136,7 @@ int main() {
     srand(time(0));
 
     vector<Player> leaderboard;
-    loadLeaderboard(leaderboard); // load existing scores
+    loadLeaderboard(leaderboard); 
 
     char playAgainPlayers = 'y';
     while (playAgainPlayers == 'y' || playAgainPlayers == 'Y') {
@@ -188,4 +185,5 @@ int main() {
     saveLeaderboard(leaderboard);
 
     return 0;
+
 }
